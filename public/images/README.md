@@ -1,6 +1,6 @@
 # Put lesson images here (png, jpg, webp, svg, gif).
 #
-# In data/lessons.js, set:
+# In Lesson Editor or data/lessons.json, set:
 #   image: '/images/your-file.png'
 #
 # Or use a full URL:

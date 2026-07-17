@@ -1,9 +1,9 @@
-import { site } from '../../data/site.js';
-import { getLessonById, getLevelById } from '../../data/lessons.js';
-import { getExerciseType } from '../../data/exercise-types.js';
-import { mountChrome } from '../components/chrome.js';
-import { mountExercise } from '../exercises/index.js';
-import { escapeHtml, initReveal, setTitle } from '../utils.js';
+import { site } from '@data/site.js';
+import { getLessonById, getLevelById } from '@data/lessons.js';
+import { getExerciseType } from '@data/exercise-types.js';
+import { mountChrome } from '@/components/chrome.js';
+import { mountExercise } from '@/exercises/index.js';
+import { escapeHtml, initReveal, setTitle } from '@/utils.js';
 
 mountChrome();
 

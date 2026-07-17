@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Trang English
 
 Website học tiếng Anh **tĩnh** (HTML/CSS/JS + Vite). Không cần database hay backend.
@@ -10,6 +9,10 @@ Giáo viên / người quản trị cập nhật bài học chủ yếu qua **Le
 ## Bắt đầu nhanh
 
 ### 1. Cài đặt & chạy
+
+**Cách đơn giản (Windows):** double-click file `Run-website-TrangEnglish.bat` — tự cài lần đầu (nếu cần), mở trình duyệt, và chạy website. File này dùng thư mục chứa chính nó làm gốc project, nên copy sang máy khác vẫn chạy được (sau khi đã cài Node.js).
+
+Hoặc dùng terminal:
 
 ```bash
 npm install
@@ -157,15 +160,24 @@ Field `image` nhận một trong các dạng:
 ## Cấu trúc thư mục
 
 ```text
-data/
+*.html                  ← Các trang (giữ ở root để URL ổn định)
+data/                   ← Nội dung site (bài học, chữ, menu)
   lessons.json          ← Bài học (Editor ghi vào đây)
   site.js / pages.js    ← Thông tin site & chữ các trang
   exercise-types.js     ← Nhãn dạng bài
-public/images/          ← Ảnh bài tập
-src/                    ← Logic trang & bài tập tương tác
-styles/                 ← CSS
-*.html                  ← Các trang
-vite.lessons-api.js     ← API ghi lessons.json khi dev
+public/                 ← File tĩnh (favicon, ảnh)
+  images/               ← Ảnh bài tập → URL /images/...
+src/
+  pages/                ← JS từng trang
+  components/           ← Header, footer, danh sách bài
+  exercises/            ← Logic bài tập tương tác
+  styles/               ← CSS
+  utils.js
+scripts/
+  lessons-api.js        ← API ghi lessons.json khi dev
+  pack.ps1              ← Đóng gói copy sang máy khác
+Run-website-TrangEnglish.bat  ← Mở website bằng double-click
+vite.config.js
 ```
 
 ---
@@ -277,7 +289,3 @@ Chỉ cần khi không dùng Editor.
 ```
 
 `accept` (tuỳ chọn): các đáp án khác vẫn được tính đúng (không phân biệt hoa thường).
-=======
-# Website-TrangEnglish
-Tặng Trang iu website dạy học
->>>>>>> 1bdc91486833403a1463764ffd38f61a04f4630f

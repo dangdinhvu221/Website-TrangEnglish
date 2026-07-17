@@ -1,9 +1,9 @@
-import { site } from '../../data/site.js';
-import { pages } from '../../data/pages.js';
-import { levels, getLessonsByLevel, getLevelById } from '../../data/lessons.js';
-import { mountChrome } from '../components/chrome.js';
-import { levelCardsHtml, levelDetailHtml } from '../components/lessons.js';
-import { escapeHtml, setTitle } from '../utils.js';
+import { site } from '@data/site.js';
+import { pages } from '@data/pages.js';
+import { levels, getLessonsByLevel, getLevelById } from '@data/lessons.js';
+import { mountChrome } from '@/components/chrome.js';
+import { levelCardsHtml, levelDetailHtml } from '@/components/lessons.js';
+import { escapeHtml, setTitle } from '@/utils.js';
 
 mountChrome();
 setTitle('Lessons', site);

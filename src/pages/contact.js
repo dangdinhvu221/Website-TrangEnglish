@@ -1,7 +1,7 @@
-import { site } from '../../data/site.js';
-import { pages } from '../../data/pages.js';
-import { mountChrome } from '../components/chrome.js';
-import { escapeHtml, initReveal, setTitle } from '../utils.js';
+import { site } from '@data/site.js';
+import { pages } from '@data/pages.js';
+import { mountChrome } from '@/components/chrome.js';
+import { escapeHtml, initReveal, setTitle } from '@/utils.js';
 
 mountChrome();
 setTitle('Contact', site);

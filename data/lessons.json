@@ -15,6 +15,72 @@
   ],
   "lessons": [
     {
+      "id": "quick-lesson",
+      "levelId": "cap-1",
+      "title": "Quick lesson",
+      "summary": "Edit this summary.",
+      "body": "Short intro for students.",
+      "tip": "Teacher tip here.",
+      "exercises": [
+        {
+          "id": "quick-lesson-flip-1",
+          "type": "flip",
+          "title": "Flashcards",
+          "prompt": "Flip the cards.",
+          "cards": [
+            {
+              "front": "A",
+              "back": "apple"
+            },
+            {
+              "front": "B",
+              "back": "ball"
+            }
+          ]
+        },
+        {
+          "id": "quick-lesson-picture-2",
+          "type": "picture",
+          "title": "Picture chase",
+          "prompt": "Choose the correct word.",
+          "items": [
+            {
+              "image": "🍎",
+              "options": [
+                "apple",
+                "ball",
+                "cat"
+              ],
+              "answer": "apple"
+            },
+            {
+              "image": "/images/apple.svg",
+              "imageAlt": "Apple",
+              "options": [
+                "apple",
+                "dog",
+                "sun"
+              ],
+              "answer": "apple"
+            }
+          ]
+        },
+        {
+          "id": "quick-lesson-write-3",
+          "type": "write",
+          "title": "Write",
+          "prompt": "Type the answer.",
+          "items": [
+            {
+              "prompt": "Write the word for 1",
+              "hint": "o…",
+              "answer": "one"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "numbers-1-20",
       "levelId": "cap-1",
       "title": "Numbers 1–20",

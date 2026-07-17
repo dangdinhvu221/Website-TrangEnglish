@@ -1,6 +1,6 @@
-import { escapeHtml } from '../utils.js';
-import { getLessonTypes, getLessonTypeIds } from '../../data/lessons.js';
-import { exerciseTypes } from '../../data/exercise-types.js';
+import { escapeHtml } from '@/utils.js';
+import { getLessonTypes, getLessonTypeIds } from '@data/lessons.js';
+import { exerciseTypes } from '@data/exercise-types.js';
 
 /** Compact lesson row with activity-type badges. */
 export function lessonItemHtml(lesson) {

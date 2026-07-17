@@ -1,8 +1,8 @@
-import catalog from '../../data/lessons.json';
-import { exerciseTypes } from '../../data/exercise-types.js';
-import { site } from '../../data/site.js';
-import { mountChrome } from '../components/chrome.js';
-import { escapeHtml, setTitle } from '../utils.js';
+import catalog from '@data/lessons.json';
+import { exerciseTypes } from '@data/exercise-types.js';
+import { site } from '@data/site.js';
+import { mountChrome } from '@/components/chrome.js';
+import { escapeHtml, setTitle } from '@/utils.js';
 
 mountChrome();
 setTitle('Lesson Editor', site);
@@ -1285,7 +1285,7 @@ function paintLessonEditor(id) {
 }
 
 if (import.meta.hot) {
-  import.meta.hot.accept('../../data/lessons.json', () => {
+  import.meta.hot.accept('@data/lessons.json', () => {
     /* Keep in-memory editor state; file already updated by persistState. */
   });
 }

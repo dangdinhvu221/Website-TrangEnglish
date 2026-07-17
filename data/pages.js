@@ -59,7 +59,7 @@ export const pages = {
         },
         {
           title: 'Easy to update',
-          text: 'Change questions in data/lessons.js — no layout edits needed.',
+          text: 'Change questions in data/lessons.json — no layout edits needed.',
         },
       ],
     },

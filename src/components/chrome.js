@@ -1,5 +1,5 @@
-import { site } from '../../data/site.js';
-import { escapeHtml, isActiveNav } from '../utils.js';
+import { site } from '@data/site.js';
+import { escapeHtml, isActiveNav } from '@/utils.js';
 import { mountPageLoader } from './page-loader.js';
 
 function navLinks(extraClass = '') {

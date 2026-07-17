@@ -3,7 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const LESSONS_FILE = path.resolve(__dirname, 'data/lessons.json');
+const ROOT = path.resolve(__dirname, '..');
+const LESSONS_FILE = path.resolve(ROOT, 'data/lessons.json');
 
 function readBody(req) {
   return new Promise((resolve, reject) => {

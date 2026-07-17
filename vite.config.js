@@ -1,22 +1,30 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import { lessonsApiPlugin } from './vite.lessons-api.js';
+import { lessonsApiPlugin } from './scripts/lessons-api.js';
+
+const root = __dirname;
 
 export default defineConfig({
   root: '.',
   publicDir: 'public',
+  resolve: {
+    alias: {
+      '@': resolve(root, 'src'),
+      '@data': resolve(root, 'data'),
+    },
+  },
   plugins: [lessonsApiPlugin()],
   build: {
     outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        lessons: resolve(__dirname, 'lessons.html'),
-        lesson: resolve(__dirname, 'lesson.html'),
-        about: resolve(__dirname, 'about.html'),
-        contact: resolve(__dirname, 'contact.html'),
-        editor: resolve(__dirname, 'editor.html'),
+        main: resolve(root, 'index.html'),
+        lessons: resolve(root, 'lessons.html'),
+        lesson: resolve(root, 'lesson.html'),
+        about: resolve(root, 'about.html'),
+        contact: resolve(root, 'contact.html'),
+        editor: resolve(root, 'editor.html'),
       },
     },
   },
