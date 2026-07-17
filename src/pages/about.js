@@ -1,7 +1,7 @@
 import { site } from '@data/site.js';
 import { pages } from '@data/pages.js';
 import { mountChrome } from '@/components/chrome.js';
-import { escapeHtml, initReveal, setTitle } from '@/utils.js';
+import { escapeHtml, initReveal, setTitle, withBase } from '@/utils.js';
 
 mountChrome();
 setTitle('About', site);
@@ -40,7 +40,7 @@ document.getElementById('main').innerHTML = `
         <h2>${escapeHtml(site.tagline)}</h2>
         <p>Browse lessons and practice one topic at a time.</p>
       </div>
-      <a class="btn btn--primary" href="${escapeHtml(site.primaryCta.href)}">${escapeHtml(site.primaryCta.label)}</a>
+      <a class="btn btn--primary" href="${escapeHtml(withBase(site.primaryCta.href))}">${escapeHtml(site.primaryCta.label)}</a>
     </div>
   </section>
 `;

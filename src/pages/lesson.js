@@ -3,7 +3,7 @@ import { getLessonById, getLevelById } from '@data/lessons.js';
 import { getExerciseType } from '@data/exercise-types.js';
 import { mountChrome } from '@/components/chrome.js';
 import { mountExercise } from '@/exercises/index.js';
-import { escapeHtml, initReveal, setTitle } from '@/utils.js';
+import { escapeHtml, initReveal, setTitle, withBase } from '@/utils.js';
 
 mountChrome();
 
@@ -19,7 +19,7 @@ if (!lesson) {
       <div class="container reveal">
         <h1>Lesson not found</h1>
         <p>That topic does not exist. Check the link or browse all lessons.</p>
-        <p><a class="btn btn--outline" href="/lessons.html">Back to lessons</a></p>
+        <p><a class="btn btn--outline" href="${escapeHtml(withBase('/lessons.html'))}">Back to lessons</a></p>
       </div>
     </section>
   `;
@@ -27,7 +27,7 @@ if (!lesson) {
 } else {
   const level = getLevelById(lesson.levelId);
   const levelLabel = level?.name ?? lesson.levelId;
-  const backHref = level ? `/lessons.html#${level.id}` : '/lessons.html';
+  const backHref = level ? withBase(`/lessons.html#${level.id}`) : withBase('/lessons.html');
   const backLabel = level ? `← ${level.name}` : '← Lessons';
   const exercises = lesson.exercises ?? [];
 

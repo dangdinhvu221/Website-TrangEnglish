@@ -1,12 +1,12 @@
 import { site } from '@data/site.js';
-import { escapeHtml, isActiveNav } from '@/utils.js';
+import { escapeHtml, isActiveNav, withBase } from '@/utils.js';
 import { mountPageLoader } from './page-loader.js';
 
 function navLinks(extraClass = '') {
   return site.nav
     .map((item) => {
       const current = isActiveNav(item.href) ? ' aria-current="page"' : '';
-      return `<a href="${escapeHtml(item.href)}"${current}>${escapeHtml(item.label)}</a>`;
+      return `<a href="${escapeHtml(withBase(item.href))}"${current}>${escapeHtml(item.label)}</a>`;
     })
     .join('');
 }
@@ -15,7 +15,7 @@ export function renderHeader(target) {
   target.innerHTML = `
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="brand" href="/">${escapeHtml(site.name)}</a>
+        <a class="brand" href="${escapeHtml(withBase('/'))}">${escapeHtml(site.name)}</a>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
           Menu
         </button>
@@ -49,7 +49,7 @@ export function renderFooter(target) {
     <footer class="site-footer">
       <div class="container site-footer__inner">
         <div>
-          <a class="brand" href="/">${escapeHtml(site.name)}</a>
+          <a class="brand" href="${escapeHtml(withBase('/'))}">${escapeHtml(site.name)}</a>
           <p>${escapeHtml(site.footer.blurb)}</p>
         </div>
         <div>
@@ -63,6 +63,7 @@ export function renderFooter(target) {
     </footer>
   `;
 }
+
 
 /** Mount header + footer into #site-header / #site-footer. */
 export function mountChrome() {

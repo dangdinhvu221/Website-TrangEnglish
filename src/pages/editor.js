@@ -2,7 +2,7 @@ import catalog from '@data/lessons.json';
 import { exerciseTypes } from '@data/exercise-types.js';
 import { site } from '@data/site.js';
 import { mountChrome } from '@/components/chrome.js';
-import { escapeHtml, setTitle } from '@/utils.js';
+import { escapeHtml, setTitle, withBase } from '@/utils.js';
 
 mountChrome();
 setTitle('Lesson Editor', site);
@@ -513,7 +513,7 @@ function paintHome() {
             <input type="file" accept="application/json,.json" data-import hidden />
           </label>
           <button type="button" class="ed-btn" data-reset>Tải lại từ file</button>
-          <a class="ed-btn" href="/lessons.html">Xem trang Lessons</a>
+          <a class="ed-btn" href="${escapeHtml(withBase('/lessons.html'))}">Xem trang Lessons</a>
         </div>
         <p class="editor__status ${statusMsg.kind ? `is-${statusMsg.kind}` : ''}">${escapeHtml(statusMsg.text)}</p>
 

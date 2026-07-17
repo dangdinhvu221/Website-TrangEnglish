@@ -1,4 +1,4 @@
-import { escapeHtml } from '@/utils.js';
+import { escapeHtml, withBase } from '@/utils.js';
 
 function normalizeAnswer(value) {
   return String(value)
@@ -38,15 +38,16 @@ function isImageSrc(value) {
 
 /** Render picture chase visual: <img> for URLs/paths, else emoji/text. */
 function pictureVisualHtml(item) {
-  const src = String(item.image ?? '').trim();
+  const raw = String(item.image ?? '').trim();
+  const src = isImageSrc(raw) && raw.startsWith('/') ? withBase(raw) : raw;
   const alt = item.imageAlt || item.answer || 'Exercise image';
-  if (isImageSrc(src)) {
+  if (isImageSrc(raw)) {
     return `
       <div class="pic-image pic-image--photo">
         <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />
       </div>`;
   }
-  return `<div class="pic-image pic-image--emoji" aria-hidden="true">${escapeHtml(src)}</div>`;
+  return `<div class="pic-image pic-image--emoji" aria-hidden="true">${escapeHtml(raw)}</div>`;
 }
 
 function feedbackHtml(ok, message) {

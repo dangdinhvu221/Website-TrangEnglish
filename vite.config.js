@@ -3,9 +3,12 @@ import { resolve } from 'path';
 import { lessonsApiPlugin } from './scripts/lessons-api.js';
 
 const root = __dirname;
+// GitHub Actions → Pages URL: https://dangdinhvu221.github.io/Website-TrangEnglish/
+const pagesBase = process.env.GITHUB_ACTIONS ? '/Website-TrangEnglish/' : '/';
 
 export default defineConfig({
   root: '.',
+  base: pagesBase,
   publicDir: 'public',
   resolve: {
     alias: {

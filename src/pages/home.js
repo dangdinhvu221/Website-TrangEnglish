@@ -3,7 +3,7 @@ import { pages } from '@data/pages.js';
 import { lessons } from '@data/lessons.js';
 import { mountChrome } from '@/components/chrome.js';
 import { lessonListHtml } from '@/components/lessons.js';
-import { escapeHtml, initReveal, setTitle } from '@/utils.js';
+import { escapeHtml, initReveal, setTitle, withBase } from '@/utils.js';
 
 mountChrome();
 setTitle('Home', site);
@@ -20,8 +20,8 @@ document.getElementById('main').innerHTML = `
       <h1 class="hero__headline">${escapeHtml(hero.headline)}</h1>
       <p class="hero__desc">${escapeHtml(hero.description)}</p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="${escapeHtml(site.primaryCta.href)}">${escapeHtml(site.primaryCta.label)}</a>
-        <a class="btn btn--ghost" href="${escapeHtml(site.secondaryCta.href)}">${escapeHtml(site.secondaryCta.label)}</a>
+        <a class="btn btn--primary" href="${escapeHtml(withBase(site.primaryCta.href))}">${escapeHtml(site.primaryCta.label)}</a>
+        <a class="btn btn--ghost" href="${escapeHtml(withBase(site.secondaryCta.href))}">${escapeHtml(site.secondaryCta.label)}</a>
       </div>
     </div>
   </section>
@@ -43,7 +43,7 @@ document.getElementById('main').innerHTML = `
       </div>
       ${lessonListHtml(featuredLessons)}
       <p class="reveal reveal-delay-1" style="margin-top: 2rem">
-        <a class="btn btn--outline" href="/lessons.html">View all lessons</a>
+        <a class="btn btn--outline" href="${escapeHtml(withBase('/lessons.html'))}">View all lessons</a>
       </p>
     </div>
   </section>
@@ -54,7 +54,7 @@ document.getElementById('main').innerHTML = `
         <h2>${escapeHtml(ctaBand.title)}</h2>
         <p>${escapeHtml(ctaBand.text)}</p>
       </div>
-      <a class="btn btn--primary" href="${escapeHtml(ctaBand.buttonHref)}">${escapeHtml(ctaBand.buttonLabel)}</a>
+      <a class="btn btn--primary" href="${escapeHtml(withBase(ctaBand.buttonHref))}">${escapeHtml(ctaBand.buttonLabel)}</a>
     </div>
   </section>
 `;

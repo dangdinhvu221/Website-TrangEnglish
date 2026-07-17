@@ -32,13 +32,31 @@ Mở địa chỉ Vite in ra (thường là **http://localhost:5173**).
 
 > **Lưu ý:** Muốn Editor ghi được file, phải chạy bằng `npm run dev` (hoặc `npm run preview`). Không mở file `.html` trực tiếp bằng Explorer.
 
-### 2. Đưa lên hosting
+### 2. Đưa lên hosting (GitHub Pages — miễn phí)
+
+Repo đã có sẵn: `https://github.com/dangdinhvu221/Website-TrangEnglish`
+
+**Lần đầu bật trang web công khai:**
+
+1. Commit + push code lên nhánh `main` (kèm file workflow `.github/workflows/deploy-pages.yml`).
+2. Vào GitHub → repo **Website-TrangEnglish** → **Settings** → **Pages**.
+3. Mục **Build and deployment** → **Source** chọn **GitHub Actions**.
+4. Vào tab **Actions** đợi workflow **Deploy GitHub Pages** chạy xong (màu xanh).
+5. Mở link:
+
+`https://dangdinhvu221.github.io/Website-TrangEnglish/`
+
+Mỗi lần `git push` lên `main`, site tự build lại. Máy khác chỉ cần mở link — **không cần cài Node.js**.
+
+> **Lưu ý:** Trên GitHub Pages, Editor **không lưu được** bài lên server (chỉ xem / học). Muốn soạn bài và lưu: chạy local bằng `Run-website-TrangEnglish.bat`, rồi push lại để cập nhật bản online.
+
+**Hosting khác (Netlify, v.v.):**
 
 ```bash
 npm run build
 ```
 
-Upload thư mục `dist/` lên Netlify, Cloudflare Pages, GitHub Pages, v.v.
+Upload thư mục `dist/` lên Netlify, Cloudflare Pages, v.v.
 
 Xem trước bản build:
 

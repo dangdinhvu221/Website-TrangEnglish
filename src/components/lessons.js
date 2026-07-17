@@ -1,4 +1,4 @@
-import { escapeHtml } from '@/utils.js';
+import { escapeHtml, withBase } from '@/utils.js';
 import { getLessonTypes, getLessonTypeIds } from '@data/lessons.js';
 import { exerciseTypes } from '@data/exercise-types.js';
 
@@ -14,7 +14,7 @@ export function lessonItemHtml(lesson) {
     .join('');
 
   return `
-    <a class="lesson-item" href="/lesson.html?id=${escapeHtml(lesson.id)}" data-types="${escapeHtml(typeIds)}" data-search="${escapeHtml(`${lesson.title} ${lesson.summary}`.toLowerCase())}">
+    <a class="lesson-item" href="${escapeHtml(withBase(`/lesson.html?id=${lesson.id}`))}" data-types="${escapeHtml(typeIds)}" data-search="${escapeHtml(`${lesson.title} ${lesson.summary}`.toLowerCase())}">
       <div>
         <h3 class="lesson-item__title">${escapeHtml(lesson.title)}</h3>
         <p class="lesson-item__summary">${escapeHtml(lesson.summary)}</p>

@@ -2,9 +2,28 @@
  * Shared helpers: path matching, escaping, motion.
  */
 
-/** Normalize path for active nav highlighting. */
+/**
+ * Prefix site paths with Vite `base` (needed for GitHub Pages project sites).
+ * Keep using root paths in data (`/lessons.html`) — this adapts them at runtime.
+ */
+export function withBase(path = '/') {
+  const raw = String(path ?? '/');
+  if (/^(https?:|mailto:|tel:|data:|blob:|javascript:)/i.test(raw)) return raw;
+  if (raw.startsWith('#')) return raw;
+
+  const base = import.meta.env.BASE_URL || '/';
+  if (!raw || raw === '/') return base;
+  if (raw.startsWith(base)) return raw;
+  return `${base}${raw.replace(/^\//, '')}`;
+}
+
+/** Normalize path for active nav highlighting (strips Vite base). */
 export function currentPath() {
   let path = window.location.pathname;
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  if (base && path.startsWith(base)) {
+    path = path.slice(base.length) || '/';
+  }
   if (path.endsWith('/index.html')) path = '/';
   if (path.endsWith('/')) path = path.slice(0, -1) || '/';
   return path === '' ? '/' : path;
