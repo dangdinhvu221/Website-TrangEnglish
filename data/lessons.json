@@ -1,0 +1,800 @@
+{
+  "levels": [
+    {
+      "id": "cap-1",
+      "name": "Level 1",
+      "title": "English — Level 1",
+      "description": "Fun practice: flashcards, picture chase, and matching — great for younger learners."
+    },
+    {
+      "id": "cap-2",
+      "name": "Level 2",
+      "title": "English — Level 2",
+      "description": "Sentence building, writing, and matching — short conversations for older learners."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "numbers-1-20",
+      "levelId": "cap-1",
+      "title": "Numbers 1–20",
+      "summary": "Match, write, and flip number cards.",
+      "body": "Practise counting and spelling numbers from 1 to 20.",
+      "tip": "Count objects on your desk, then do the exercises.",
+      "exercises": [
+        {
+          "id": "numbers-match",
+          "type": "match",
+          "title": "Match — Numbers",
+          "prompt": "Match the word with the number.",
+          "pairs": [
+            {
+              "left": "one",
+              "right": "1"
+            },
+            {
+              "left": "two",
+              "right": "2"
+            },
+            {
+              "left": "five",
+              "right": "5"
+            },
+            {
+              "left": "ten",
+              "right": "10"
+            },
+            {
+              "left": "twelve",
+              "right": "12"
+            },
+            {
+              "left": "twenty",
+              "right": "20"
+            }
+          ]
+        },
+        {
+          "id": "numbers-write",
+          "type": "write",
+          "title": "Write — How many?",
+          "prompt": "Type the English word for each number.",
+          "items": [
+            {
+              "prompt": "Write the English word for 3",
+              "hint": "Starts with th…",
+              "answer": "three"
+            },
+            {
+              "prompt": "Write the English word for 7",
+              "hint": "Five letters, starts with s…",
+              "answer": "seven"
+            },
+            {
+              "prompt": "Write the English word for 11",
+              "hint": "eleven = 10 + 1",
+              "answer": "eleven"
+            },
+            {
+              "prompt": "Write the English word for 15",
+              "hint": "fifteen — related to five",
+              "answer": "fifteen"
+            }
+          ]
+        },
+        {
+          "id": "numbers-flip",
+          "type": "flip",
+          "title": "Flashcards — Count",
+          "prompt": "Flip to see the spelling.",
+          "cards": [
+            {
+              "front": "4",
+              "back": "four"
+            },
+            {
+              "front": "6",
+              "back": "six"
+            },
+            {
+              "front": "8",
+              "back": "eight"
+            },
+            {
+              "front": "9",
+              "back": "nine"
+            },
+            {
+              "front": "13",
+              "back": "thirteen"
+            },
+            {
+              "front": "16",
+              "back": "sixteen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "colours",
+      "levelId": "cap-1",
+      "title": "Colours",
+      "summary": "Picture chase, match, and sentence building.",
+      "body": "Recognise and name colours in English.",
+      "tip": "Point to things around the room and say their colour.",
+      "exercises": [
+        {
+          "id": "colours-picture",
+          "type": "picture",
+          "title": "Picture chase",
+          "prompt": "What colour is this?",
+          "items": [
+            {
+              "image": "/images/color-red.svg",
+              "imageAlt": "Red circle",
+              "options": [
+                "red",
+                "blue",
+                "green"
+              ],
+              "answer": "red"
+            },
+            {
+              "image": "/images/color-blue.svg",
+              "imageAlt": "Blue circle",
+              "options": [
+                "yellow",
+                "blue",
+                "pink"
+              ],
+              "answer": "blue"
+            },
+            {
+              "image": "🟡",
+              "options": [
+                "green",
+                "yellow",
+                "brown"
+              ],
+              "answer": "yellow"
+            },
+            {
+              "image": "🟢",
+              "options": [
+                "green",
+                "orange",
+                "white"
+              ],
+              "answer": "green"
+            }
+          ]
+        },
+        {
+          "id": "colours-match",
+          "type": "match",
+          "title": "Match — Colours",
+          "prompt": "Match the colour with an example.",
+          "pairs": [
+            {
+              "left": "red",
+              "right": "like a strawberry"
+            },
+            {
+              "left": "blue",
+              "right": "like the sky"
+            },
+            {
+              "left": "yellow",
+              "right": "like the sun"
+            },
+            {
+              "left": "green",
+              "right": "like grass"
+            },
+            {
+              "left": "pink",
+              "right": "like a flower"
+            },
+            {
+              "left": "black",
+              "right": "like night"
+            }
+          ]
+        },
+        {
+          "id": "colours-sentence",
+          "type": "sentence",
+          "title": "Build a sentence",
+          "prompt": "Catch the words and make a full sentence.",
+          "items": [
+            {
+              "words": [
+                "is",
+                "It",
+                "blue"
+              ],
+              "answer": "It is blue"
+            },
+            {
+              "words": [
+                "colour",
+                "is",
+                "My",
+                "red",
+                "favourite"
+              ],
+              "answer": "My favourite colour is red"
+            },
+            {
+              "words": [
+                "What",
+                "is",
+                "it",
+                "colour",
+                "?"
+              ],
+              "answer": "What colour is it?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "levelId": "cap-1",
+      "title": "My family",
+      "summary": "Flashcards, match, and writing about family.",
+      "body": "Introduce people in your family in English.",
+      "tip": "Look at a family photo and name each person.",
+      "exercises": [
+        {
+          "id": "family-flip",
+          "type": "flip",
+          "title": "Flashcards — Family",
+          "prompt": "Flip the cards to learn the words.",
+          "cards": [
+            {
+              "front": "👩",
+              "back": "mum / mother"
+            },
+            {
+              "front": "👨",
+              "back": "dad / father"
+            },
+            {
+              "front": "👧",
+              "back": "sister"
+            },
+            {
+              "front": "👦",
+              "back": "brother"
+            },
+            {
+              "front": "👵",
+              "back": "grandma"
+            },
+            {
+              "front": "👴",
+              "back": "grandpa"
+            }
+          ]
+        },
+        {
+          "id": "family-match",
+          "type": "match",
+          "title": "Match — Family",
+          "prompt": "Match the word with the meaning.",
+          "pairs": [
+            {
+              "left": "mum",
+              "right": "mother"
+            },
+            {
+              "left": "dad",
+              "right": "father"
+            },
+            {
+              "left": "sister",
+              "right": "a girl in your family"
+            },
+            {
+              "left": "brother",
+              "right": "a boy in your family"
+            }
+          ]
+        },
+        {
+          "id": "family-write",
+          "type": "write",
+          "title": "Write — My family",
+          "prompt": "Fill in the missing word.",
+          "items": [
+            {
+              "prompt": "This is my ___ (mother)",
+              "hint": "mum or mother",
+              "answer": "mum",
+              "accept": [
+                "mum",
+                "mother",
+                "mom"
+              ]
+            },
+            {
+              "prompt": "This is my ___ (father)",
+              "hint": "dad or father",
+              "answer": "dad",
+              "accept": [
+                "dad",
+                "father"
+              ]
+            },
+            {
+              "prompt": "I have one ___ (girl sibling)",
+              "hint": "sister",
+              "answer": "sister"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "school-life",
+      "levelId": "cap-2",
+      "title": "School life",
+      "summary": "Match subjects, build sentences, and write.",
+      "body": "Talk about subjects, your timetable, and classmates.",
+      "tip": "Write your Monday timetable in English.",
+      "exercises": [
+        {
+          "id": "school-match",
+          "type": "match",
+          "title": "Match — Subjects",
+          "prompt": "Match the subject with what you do.",
+          "pairs": [
+            {
+              "left": "English",
+              "right": "language class"
+            },
+            {
+              "left": "Maths",
+              "right": "numbers and sums"
+            },
+            {
+              "left": "PE",
+              "right": "sports and games"
+            },
+            {
+              "left": "Science",
+              "right": "experiments"
+            },
+            {
+              "left": "History",
+              "right": "the past"
+            },
+            {
+              "left": "Art",
+              "right": "drawing and painting"
+            }
+          ]
+        },
+        {
+          "id": "school-sentence",
+          "type": "sentence",
+          "title": "Build a sentence",
+          "prompt": "Arrange the words into a correct sentence.",
+          "items": [
+            {
+              "words": [
+                "favourite",
+                "is",
+                "My",
+                "subject",
+                "English"
+              ],
+              "answer": "My favourite subject is English"
+            },
+            {
+              "words": [
+                "have",
+                "We",
+                "PE",
+                "on",
+                "Friday"
+              ],
+              "answer": "We have PE on Friday"
+            },
+            {
+              "words": [
+                "sits",
+                "My",
+                "friend",
+                "next",
+                "to",
+                "me"
+              ],
+              "answer": "My friend sits next to me"
+            }
+          ]
+        },
+        {
+          "id": "school-write",
+          "type": "write",
+          "title": "Write — School day",
+          "prompt": "Answer briefly in English.",
+          "items": [
+            {
+              "prompt": "What is your favourite subject? (e.g. English)",
+              "hint": "A subject name, e.g. English or Maths",
+              "answer": "English",
+              "accept": [
+                "english",
+                "maths",
+                "math",
+                "pe",
+                "science",
+                "art",
+                "history"
+              ]
+            },
+            {
+              "prompt": "Complete: We have ___ on Monday. (a subject)",
+              "hint": "Type a subject name, e.g. English",
+              "answer": "English",
+              "accept": [
+                "english",
+                "maths",
+                "math",
+                "pe",
+                "science",
+                "art",
+                "history",
+                "music"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "daily-routine",
+      "levelId": "cap-2",
+      "title": "Daily routines",
+      "summary": "Flashcards, sentence building, and picture chase.",
+      "body": "Describe your day using the present simple.",
+      "tip": "Tell a partner three things you do every day.",
+      "exercises": [
+        {
+          "id": "routine-flip",
+          "type": "flip",
+          "title": "Flashcards — Routines",
+          "prompt": "Flip to remember the phrases.",
+          "cards": [
+            {
+              "front": "🌅 Morning",
+              "back": "get up"
+            },
+            {
+              "front": "🚌 To school",
+              "back": "go to school"
+            },
+            {
+              "front": "📚 After school",
+              "back": "do homework"
+            },
+            {
+              "front": "🍽️ Evening",
+              "back": "have dinner"
+            },
+            {
+              "front": "🌙 Night",
+              "back": "go to bed"
+            }
+          ]
+        },
+        {
+          "id": "routine-sentence",
+          "type": "sentence",
+          "title": "Build a sentence",
+          "prompt": "Build a complete sentence.",
+          "items": [
+            {
+              "words": [
+                "up",
+                "I",
+                "get",
+                "at",
+                "6:30"
+              ],
+              "answer": "I get up at 6:30"
+            },
+            {
+              "words": [
+                "to",
+                "I",
+                "go",
+                "school",
+                "by",
+                "bus"
+              ],
+              "answer": "I go to school by bus"
+            },
+            {
+              "words": [
+                "my",
+                "I",
+                "do",
+                "homework",
+                "after",
+                "dinner"
+              ],
+              "answer": "I do my homework after dinner"
+            }
+          ]
+        },
+        {
+          "id": "routine-picture",
+          "type": "picture",
+          "title": "Picture chase",
+          "prompt": "Choose the phrase that matches the picture.",
+          "items": [
+            {
+              "image": "⏰",
+              "options": [
+                "get up",
+                "go to bed",
+                "have lunch"
+              ],
+              "answer": "get up"
+            },
+            {
+              "image": "🚌",
+              "options": [
+                "watch TV",
+                "go to school",
+                "play games"
+              ],
+              "answer": "go to school"
+            },
+            {
+              "image": "📝",
+              "options": [
+                "do homework",
+                "have breakfast",
+                "brush teeth"
+              ],
+              "answer": "do homework"
+            },
+            {
+              "image": "😴",
+              "options": [
+                "get up",
+                "go to bed",
+                "ride a bike"
+              ],
+              "answer": "go to bed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hobbies",
+      "levelId": "cap-2",
+      "title": "Hobbies & free time",
+      "summary": "Match hobbies, flip cards, and write.",
+      "body": "Talk about hobbies and ask your friends.",
+      "tip": "Ask a follow-up: “When do you usually play?”",
+      "exercises": [
+        {
+          "id": "hobbies-match",
+          "type": "match",
+          "title": "Match — Hobbies",
+          "prompt": "Match the activity with the clue.",
+          "pairs": [
+            {
+              "left": "reading",
+              "right": "books and stories"
+            },
+            {
+              "left": "football",
+              "right": "a ball sport"
+            },
+            {
+              "left": "badminton",
+              "right": "racket and shuttlecock"
+            },
+            {
+              "left": "drawing",
+              "right": "pencils and paper"
+            },
+            {
+              "left": "music",
+              "right": "songs and instruments"
+            },
+            {
+              "left": "swimming",
+              "right": "in the pool"
+            }
+          ]
+        },
+        {
+          "id": "hobbies-flip",
+          "type": "flip",
+          "title": "Flashcards — Free time",
+          "prompt": "Flip to remember questions and answers.",
+          "cards": [
+            {
+              "front": "What do you do in your free time?",
+              "back": "I like reading."
+            },
+            {
+              "front": "Do you play sports?",
+              "back": "Yes, I play football."
+            },
+            {
+              "front": "How often?",
+              "back": "Twice a week."
+            },
+            {
+              "front": "That sounds fun!",
+              "back": "Thanks!"
+            }
+          ]
+        },
+        {
+          "id": "hobbies-write",
+          "type": "write",
+          "title": "Write — My hobby",
+          "prompt": "Write a short answer about hobbies.",
+          "items": [
+            {
+              "prompt": "Complete: I like ___. (a hobby in English)",
+              "hint": "e.g. reading, football, music…",
+              "answer": "reading",
+              "accept": [
+                "reading",
+                "football",
+                "badminton",
+                "drawing",
+                "music",
+                "swimming",
+                "games"
+              ]
+            },
+            {
+              "prompt": "Complete: I play ___ twice a week.",
+              "hint": "A sport, e.g. football",
+              "answer": "football",
+              "accept": [
+                "football",
+                "badminton",
+                "tennis",
+                "games"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "making-plans",
+      "levelId": "cap-2",
+      "title": "Making plans",
+      "summary": "Build invites, picture chase, and write.",
+      "body": "Invite a friend and agree or decline plans.",
+      "tip": "Offer two time options so your friend can choose easily.",
+      "exercises": [
+        {
+          "id": "plans-sentence",
+          "type": "sentence",
+          "title": "Build a sentence",
+          "prompt": "Build the full dialogue line.",
+          "items": [
+            {
+              "words": [
+                "you",
+                "Are",
+                "free",
+                "on",
+                "Saturday",
+                "?"
+              ],
+              "answer": "Are you free on Saturday?"
+            },
+            {
+              "words": [
+                "about",
+                "How",
+                "3",
+                "pm",
+                "at",
+                "the",
+                "park",
+                "?"
+              ],
+              "answer": "How about 3 pm at the park?"
+            },
+            {
+              "words": [
+                "Sorry",
+                ",",
+                "I",
+                "can't",
+                ".",
+                "I",
+                "have",
+                "a",
+                "test"
+              ],
+              "answer": "Sorry, I can't. I have a test"
+            }
+          ]
+        },
+        {
+          "id": "plans-picture",
+          "type": "picture",
+          "title": "Picture chase",
+          "prompt": "Choose the line that fits the situation.",
+          "items": [
+            {
+              "image": "📅",
+              "options": [
+                "Are you free?",
+                "I am hungry.",
+                "Good night."
+              ],
+              "answer": "Are you free?"
+            },
+            {
+              "image": "🏞️",
+              "options": [
+                "At the park",
+                "In the fridge",
+                "On the bus"
+              ],
+              "answer": "At the park"
+            },
+            {
+              "image": "🙌",
+              "options": [
+                "See you there!",
+                "I am sleepy.",
+                "Open the door."
+              ],
+              "answer": "See you there!"
+            }
+          ]
+        },
+        {
+          "id": "plans-write",
+          "type": "write",
+          "title": "Write — Invite a friend",
+          "prompt": "Write a short invitation.",
+          "items": [
+            {
+              "prompt": "Invite a friend on Saturday",
+              "hint": "Start with: Are you free…",
+              "answer": "Are you free on Saturday?",
+              "accept": [
+                "are you free on saturday?",
+                "are you free on saturday"
+              ]
+            },
+            {
+              "prompt": "Suggest meeting at 3 o’clock",
+              "hint": "Start with: How about…",
+              "answer": "How about 3 pm?",
+              "accept": [
+                "how about 3 pm?",
+                "how about 3 pm",
+                "how about 3pm?",
+                "how about 3pm"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
