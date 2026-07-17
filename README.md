@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Trang English
 
 Website học tiếng Anh **tĩnh** (HTML/CSS/JS + Vite). Không cần database hay backend.
@@ -276,3 +277,7 @@ Chỉ cần khi không dùng Editor.
 ```
 
 `accept` (tuỳ chọn): các đáp án khác vẫn được tính đúng (không phân biệt hoa thường).
+=======
+# Website-TrangEnglish
+Tặng Trang iu website dạy học
+>>>>>>> 1bdc91486833403a1463764ffd38f61a04f4630f
