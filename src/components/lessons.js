@@ -1,16 +1,18 @@
 import { escapeHtml, withBase } from '@/utils.js';
 import { getLessonTypes, getLessonTypeIds } from '@data/lessons.js';
-import { exerciseTypes } from '@data/exercise-types.js';
+import { getAllExerciseTypes } from '@data/exercise-types.js';
 
 /** Compact lesson row with activity-type badges. */
 export function lessonItemHtml(lesson) {
   const types = getLessonTypes(lesson);
   const typeIds = getLessonTypeIds(lesson).join(' ');
   const badges = types
-    .map(
-      (t) =>
-        `<span class="type-badge type-badge--${escapeHtml(t.id)}">${escapeHtml(t.label)}</span>`,
-    )
+    .map((t) => {
+      if (t.custom) {
+        return `<span class="type-badge type-badge--custom" style="--type-accent:${escapeHtml(t.color || '#5a6a7a')}">${escapeHtml(t.label)}</span>`;
+      }
+      return `<span class="type-badge type-badge--${escapeHtml(t.id)}">${escapeHtml(t.label)}</span>`;
+    })
     .join('');
 
   return `
@@ -58,7 +60,7 @@ export function levelCardsHtml(levels, getLessonsByLevel) {
 
 /** Filter bar: search + exercise type chips. */
 export function filterBarHtml(activeType = 'all') {
-  const types = Object.values(exerciseTypes);
+  const types = getAllExerciseTypes();
   return `
     <div class="filter-bar" data-filter-bar>
       <label class="filter-search">
@@ -68,13 +70,17 @@ export function filterBarHtml(activeType = 'all') {
       <div class="filter-types" role="group" aria-label="Filter by activity type">
         <button type="button" class="filter-chip ${activeType === 'all' ? 'is-active' : ''}" data-filter-type="all">All</button>
         ${types
-          .map(
-            (t) => `
-          <button type="button" class="filter-chip filter-chip--${escapeHtml(t.id)} ${activeType === t.id ? 'is-active' : ''}" data-filter-type="${escapeHtml(t.id)}">
+          .map((t) => {
+            const mod = t.custom ? 'filter-chip--custom' : `filter-chip--${escapeHtml(t.id)}`;
+            const style = t.custom
+              ? ` style="--type-accent:${escapeHtml(t.color || '#5a6a7a')}"`
+              : '';
+            return `
+          <button type="button" class="filter-chip ${mod} ${activeType === t.id ? 'is-active' : ''}" data-filter-type="${escapeHtml(t.id)}"${style}>
             ${escapeHtml(t.label)}
           </button>
-        `,
-          )
+        `;
+          })
           .join('')}
       </div>
     </div>

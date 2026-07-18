@@ -1,3 +1,5 @@
+import { resolveBaseType } from '@data/exercise-types.js';
+import { playSelectSound, reactToAnswer } from '@/exercises/feedback.js';
 import { escapeHtml, withBase } from '@/utils.js';
 
 function normalizeAnswer(value) {
@@ -86,6 +88,7 @@ function mountFlip(root, exercise) {
 
   root.querySelectorAll('.flip-card').forEach((btn) => {
     btn.addEventListener('click', () => {
+      playSelectSound();
       const open = btn.classList.toggle('is-flipped');
       btn.setAttribute('aria-pressed', String(open));
     });
@@ -146,6 +149,7 @@ function mountPicture(root, exercise) {
     }
     root.querySelectorAll('.pic-option').forEach((btn) => {
       btn.addEventListener('click', () => {
+        playSelectSound();
         const ok = btn.dataset.answer === item.answer;
         root.querySelectorAll('.pic-option').forEach((b) => {
           b.disabled = true;
@@ -161,10 +165,11 @@ function mountPicture(root, exercise) {
           ok,
           ok ? 'Well done!' : `Answer: ${item.answer}`,
         );
+        reactToAnswer(root, ok);
         setTimeout(() => {
           index += 1;
           render();
-        }, 900);
+        }, ok ? 1300 : 1000);
       });
     });
   }
@@ -236,7 +241,7 @@ function mountSentence(root, exercise) {
           <button type="button" class="btn btn--primary" data-check>Check</button>
         </div>
         <div data-feedback>
-          <p class="sent-tip">Words drift slowly — hover to pause, then drag into the box above. Wrong? Press Clear.</p>
+          <p class="sent-tip">Words drift around — hover to pause, then drag into the box above. Wrong? Press Clear.</p>
         </div>
       </div>
     `;
@@ -250,7 +255,7 @@ function mountSentence(root, exercise) {
     const clearBtn = root.querySelector('[data-clear]');
     const checkBtn = root.querySelector('[data-check]');
 
-    /** Make chips bounce around inside the sky (slow). */
+    /** Make chips bounce around inside the sky. */
     function startWander() {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const chips = [...sky.querySelectorAll('.sent-float')];
@@ -262,20 +267,20 @@ function mountSentence(root, exercise) {
         const ch = el.offsetHeight || 36;
         const x = 8 + Math.random() * Math.max(8, w0 - cw - 16);
         const y = 8 + Math.random() * Math.max(8, h0 - ch - 16);
-        // Slow drift — easy to point and catch
-        const speed = reduceMotion ? 0 : 0.18 + Math.random() * 0.22;
+        // Lively drift — still catchable on hover
+        const speed = reduceMotion ? 0 : 0.55 + Math.random() * 0.65;
         const angle = Math.random() * Math.PI * 2;
         el.style.left = '0px';
         el.style.top = '0px';
-        el.style.transform = `translate(${x}px, ${y}px) rotate(${-6 + Math.random() * 12}deg)`;
+        el.style.transform = `translate(${x}px, ${y}px) rotate(${-10 + Math.random() * 20}deg)`;
         return {
           el,
           x,
           y,
           vx: Math.cos(angle) * speed * (i % 2 === 0 ? 1 : -1),
           vy: Math.sin(angle) * speed,
-          rot: -6 + Math.random() * 12,
-          vr: reduceMotion ? 0 : -0.12 + Math.random() * 0.24,
+          rot: -10 + Math.random() * 20,
+          vr: reduceMotion ? 0 : -0.35 + Math.random() * 0.7,
         };
       });
 
@@ -316,36 +321,36 @@ function mountSentence(root, exercise) {
 
           if (m.x <= 4) {
             m.x = 4;
-            m.vx = Math.abs(m.vx) || 0.2;
+            m.vx = Math.abs(m.vx) || 0.55;
           } else if (m.x >= w - cw - 4) {
             m.x = w - cw - 4;
-            m.vx = -Math.abs(m.vx) || -0.2;
+            m.vx = -Math.abs(m.vx) || -0.55;
           }
           if (m.y <= 4) {
             m.y = 4;
-            m.vy = Math.abs(m.vy) || 0.2;
+            m.vy = Math.abs(m.vy) || 0.55;
           } else if (m.y >= h - ch - 4) {
             m.y = h - ch - 4;
-            m.vy = -Math.abs(m.vy) || -0.2;
+            m.vy = -Math.abs(m.vy) || -0.55;
           }
 
-          // Rare gentle course change
-          if (Math.random() < 0.008) {
-            m.vx += -0.08 + Math.random() * 0.16;
-            m.vy += -0.08 + Math.random() * 0.16;
+          // Frequent course changes so chips feel more lively
+          if (Math.random() < 0.022) {
+            m.vx += -0.22 + Math.random() * 0.44;
+            m.vy += -0.22 + Math.random() * 0.44;
           }
 
           const sp = Math.hypot(m.vx, m.vy);
-          const maxSp = 0.55;
-          const minSp = 0.12;
+          const maxSp = 1.45;
+          const minSp = 0.4;
           if (sp > maxSp) {
             m.vx = (m.vx / sp) * maxSp;
             m.vy = (m.vy / sp) * maxSp;
           }
           if (sp < minSp && !reduceMotion) {
             const a = Math.random() * Math.PI * 2;
-            m.vx = Math.cos(a) * 0.28;
-            m.vy = Math.sin(a) * 0.28;
+            m.vx = Math.cos(a) * 0.75;
+            m.vy = Math.sin(a) * 0.75;
           }
 
           m.el.style.transform = `translate(${m.x}px, ${m.y}px) rotate(${m.rot}deg)`;
@@ -388,6 +393,7 @@ function mountSentence(root, exercise) {
 
     function placeInBuilt(id, atIndex = null) {
       if (locked || builtIds.includes(id)) return;
+      playSelectSound();
       const chip = chipInSky(id);
       if (chip) {
         chip.classList.add('is-caught');
@@ -491,6 +497,7 @@ function mountSentence(root, exercise) {
         feedback.innerHTML = feedbackHtml(false, 'Drag some words into the sentence box first.');
         return;
       }
+      playSelectSound();
       const user = builtIds
         .map((id) => pool.find((p) => p.id === id)?.w ?? '')
         .join(' ');
@@ -502,10 +509,11 @@ function mountSentence(root, exercise) {
         game.classList.add('is-locked', 'is-ok');
         checkBtn.disabled = true;
         feedback.innerHTML = feedbackHtml(true, 'Perfect sentence!');
+        reactToAnswer(root, true);
         setTimeout(() => {
           index += 1;
           render();
-        }, 1000);
+        }, 1300);
         return;
       }
 
@@ -516,6 +524,7 @@ function mountSentence(root, exercise) {
         ${feedbackHtml(false, 'Not quite — stopped.')}
         <p class="sent-tip">Press <strong>Clear</strong> to catch the words and try again.</p>
       `;
+      reactToAnswer(root, false);
     });
 
     syncDrop();
@@ -637,6 +646,7 @@ function mountMatch(root, exercise) {
 
     root.querySelectorAll('.match-item').forEach((btn) => {
       btn.addEventListener('click', () => {
+        playSelectSound();
         const id = Number(btn.dataset.id);
         const side = btn.dataset.side;
         if (side === 'left') {
@@ -653,10 +663,12 @@ function mountMatch(root, exercise) {
           matched.add(id);
           lastMatchedId = id;
           selectedLeft = null;
+          reactToAnswer(root, true);
           render();
         } else {
           mistakes += 1;
           wrongId = id;
+          reactToAnswer(root, false);
           render();
           setTimeout(() => {
             selectedLeft = null;
@@ -666,6 +678,362 @@ function mountMatch(root, exercise) {
         }
       });
     });
+  }
+
+  render();
+}
+
+/* ——— Choice (text multiple choice) ——— */
+function mountChoice(root, exercise) {
+  const items = exercise.items ?? [];
+  let index = 0;
+  let score = 0;
+
+  function render() {
+    if (index >= items.length) {
+      root.innerHTML = `
+        <div class="ex-done">
+          <h3>Done!</h3>
+          <p>${score}/${items.length} correct.</p>
+          <button type="button" class="btn btn--primary" data-restart>Try again</button>
+        </div>
+      `;
+      root.querySelector('[data-restart]')?.addEventListener('click', () => {
+        index = 0;
+        score = 0;
+        render();
+      });
+      return;
+    }
+
+    const item = items[index];
+    const options = shuffle(item.options || []);
+    const visual =
+      item.image && String(item.image).trim()
+        ? pictureVisualHtml({ image: item.image, imageAlt: item.imageAlt, answer: item.answer })
+        : '';
+
+    root.innerHTML = `
+      ${progressHtml(index + 1, items.length)}
+      <div class="choice-stage">
+        <p class="choice-prompt">${escapeHtml(item.prompt)}</p>
+        ${visual}
+        <div class="choice-options">
+          ${options
+            .map(
+              (opt) =>
+                `<button type="button" class="choice-option" data-answer="${escapeHtml(opt)}">${escapeHtml(opt)}</button>`,
+            )
+            .join('')}
+        </div>
+        <div data-feedback></div>
+      </div>
+    `;
+
+    root.querySelectorAll('.choice-option').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        playSelectSound();
+        const ok = normalizeAnswer(btn.dataset.answer) === normalizeAnswer(item.answer);
+        root.querySelectorAll('.choice-option').forEach((b) => {
+          b.disabled = true;
+          if (normalizeAnswer(b.dataset.answer) === normalizeAnswer(item.answer)) {
+            b.classList.add('is-correct');
+          }
+        });
+        if (ok) {
+          score += 1;
+          btn.classList.add('is-correct');
+        } else {
+          btn.classList.add('is-wrong');
+        }
+        root.querySelector('[data-feedback]').innerHTML = feedbackHtml(
+          ok,
+          ok ? 'Well done!' : `Answer: ${item.answer}`,
+        );
+        reactToAnswer(root, ok);
+        setTimeout(() => {
+          index += 1;
+          render();
+        }, ok ? 1300 : 1000);
+      });
+    });
+  }
+
+  render();
+}
+
+/* ——— True / False ——— */
+function mountTrueFalse(root, exercise) {
+  const items = exercise.items ?? [];
+  let index = 0;
+  let score = 0;
+
+  function render() {
+    if (index >= items.length) {
+      root.innerHTML = `
+        <div class="ex-done">
+          <h3>Finished!</h3>
+          <p>${score}/${items.length} correct.</p>
+          <button type="button" class="btn btn--primary" data-restart>Try again</button>
+        </div>
+      `;
+      root.querySelector('[data-restart]')?.addEventListener('click', () => {
+        index = 0;
+        score = 0;
+        render();
+      });
+      return;
+    }
+
+    const item = items[index];
+    const correct = Boolean(item.answer);
+
+    root.innerHTML = `
+      ${progressHtml(index + 1, items.length)}
+      <div class="tf-stage">
+        <p class="tf-statement">${escapeHtml(item.statement || item.prompt || '')}</p>
+        <div class="tf-options">
+          <button type="button" class="tf-btn tf-btn--true" data-pick="true">True</button>
+          <button type="button" class="tf-btn tf-btn--false" data-pick="false">False</button>
+        </div>
+        <div data-feedback></div>
+      </div>
+    `;
+
+    root.querySelectorAll('.tf-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        playSelectSound();
+        const pick = btn.dataset.pick === 'true';
+        const ok = pick === correct;
+        root.querySelectorAll('.tf-btn').forEach((b) => {
+          b.disabled = true;
+          if ((b.dataset.pick === 'true') === correct) b.classList.add('is-correct');
+        });
+        if (ok) {
+          score += 1;
+          btn.classList.add('is-correct');
+        } else {
+          btn.classList.add('is-wrong');
+        }
+        root.querySelector('[data-feedback]').innerHTML = feedbackHtml(
+          ok,
+          ok ? 'Correct!' : `Answer: ${correct ? 'True' : 'False'}`,
+        );
+        reactToAnswer(root, ok);
+        setTimeout(() => {
+          index += 1;
+          render();
+        }, ok ? 1300 : 1000);
+      });
+    });
+  }
+
+  render();
+}
+
+/* ——— Fill the blank ——— */
+function mountBlank(root, exercise) {
+  const items = exercise.items ?? [];
+  let index = 0;
+  let score = 0;
+
+  function render() {
+    if (index >= items.length) {
+      root.innerHTML = `
+        <div class="ex-done">
+          <h3>All blanks done!</h3>
+          <p>${score}/${items.length} correct.</p>
+          <button type="button" class="btn btn--primary" data-restart>Try again</button>
+        </div>
+      `;
+      root.querySelector('[data-restart]')?.addEventListener('click', () => {
+        index = 0;
+        score = 0;
+        render();
+      });
+      return;
+    }
+
+    const item = items[index];
+    const sentence = escapeHtml(String(item.prompt || ''))
+      .replace(/_{2,}/g, '<span class="blank-gap" aria-hidden="true">____</span>')
+      .replace(/\(\s*\.\.\.\s*\)/g, '<span class="blank-gap" aria-hidden="true">____</span>');
+
+    root.innerHTML = `
+      ${progressHtml(index + 1, items.length)}
+      <form class="blank-form" autocomplete="off">
+        <p class="blank-sentence">${sentence}</p>
+        ${item.hint ? `<p class="write-hint"><span class="write-hint__label">Hint</span> ${escapeHtml(item.hint)}</p>` : ''}
+        <label class="visually-hidden" for="blank-input">Missing word</label>
+        <input id="blank-input" class="blank-input" type="text" required spellcheck="false" placeholder="Type the missing word…" />
+        <button type="submit" class="btn btn--primary">Check</button>
+        <div data-feedback></div>
+      </form>
+    `;
+
+    const form = root.querySelector('.blank-form');
+    const input = root.querySelector('#blank-input');
+    const feedback = root.querySelector('[data-feedback]');
+    input.focus();
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      playSelectSound();
+      const ok = isCorrectWrite(input.value, item);
+      if (ok) score += 1;
+      input.disabled = true;
+      form.querySelector('button[type="submit"]').disabled = true;
+
+      if (ok) {
+        feedback.innerHTML = `
+          ${feedbackHtml(true, 'Correct!')}
+          <button type="button" class="btn btn--primary" data-next>Continue</button>
+        `;
+      } else {
+        feedback.innerHTML = `
+          ${feedbackHtml(false, 'Not quite — see the correct answer below.')}
+          <div class="write-answer" role="status">
+            <span class="write-answer__label">Correct answer</span>
+            <strong class="write-answer__text">${escapeHtml(item.answer)}</strong>
+          </div>
+          <button type="button" class="btn btn--primary" data-next>Continue</button>
+        `;
+      }
+      reactToAnswer(root, ok);
+
+      feedback.querySelector('[data-next]')?.addEventListener('click', () => {
+        index += 1;
+        render();
+      });
+    });
+  }
+
+  render();
+}
+
+/* ——— Put in order ——— */
+function mountOrder(root, exercise) {
+  const items = exercise.items ?? [];
+  let index = 0;
+  let score = 0;
+
+  function render() {
+    if (index >= items.length) {
+      root.innerHTML = `
+        <div class="ex-done">
+          <h3>Ordering done!</h3>
+          <p>${score}/${items.length} correct.</p>
+          <button type="button" class="btn btn--primary" data-restart>Try again</button>
+        </div>
+      `;
+      root.querySelector('[data-restart]')?.addEventListener('click', () => {
+        index = 0;
+        score = 0;
+        render();
+      });
+      return;
+    }
+
+    const item = items[index];
+    const parts = (item.parts || []).map((text, i) => ({ text, id: `p-${index}-${i}` }));
+    const pool = shuffle(parts);
+    let builtIds = [];
+    let locked = false;
+
+    root.innerHTML = `
+      ${progressHtml(index + 1, items.length)}
+      <div class="order-game">
+        <p class="order-hint">Tap the pieces in the correct order</p>
+        <div class="order-built" data-built></div>
+        <div class="order-pool" data-pool>
+          ${pool
+            .map(
+              (p) => `
+            <button type="button" class="order-chip" data-id="${escapeHtml(p.id)}" data-text="${escapeHtml(p.text)}">
+              ${escapeHtml(p.text)}
+            </button>`,
+            )
+            .join('')}
+        </div>
+        <div class="order-actions btn-row">
+          <button type="button" class="btn btn--outline" data-clear>Clear</button>
+          <button type="button" class="btn btn--primary" data-check>Check</button>
+        </div>
+        <div data-feedback></div>
+      </div>
+    `;
+
+    const builtEl = root.querySelector('[data-built]');
+    const poolEl = root.querySelector('[data-pool]');
+    const feedback = root.querySelector('[data-feedback]');
+
+    function sync() {
+      builtEl.innerHTML = builtIds.length
+        ? builtIds
+            .map((id, i) => {
+              const part = parts.find((p) => p.id === id);
+              if (!part) return '';
+              return `<button type="button" class="order-chip order-chip--built" data-built-id="${escapeHtml(id)}">
+                <span class="order-chip__n">${i + 1}</span>${escapeHtml(part.text)}
+              </button>`;
+            })
+            .join('')
+        : '<p class="order-built__empty">Your order appears here</p>';
+
+      poolEl.querySelectorAll('.order-chip').forEach((chip) => {
+        chip.hidden = builtIds.includes(chip.dataset.id);
+        chip.disabled = locked;
+      });
+
+      builtEl.querySelectorAll('[data-built-id]').forEach((chip) => {
+        chip.disabled = locked;
+        chip.addEventListener('click', () => {
+          if (locked) return;
+          playSelectSound();
+          builtIds = builtIds.filter((id) => id !== chip.dataset.builtId);
+          sync();
+        });
+      });
+    }
+
+    poolEl.querySelectorAll('.order-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        if (locked || builtIds.includes(chip.dataset.id)) return;
+        playSelectSound();
+        builtIds.push(chip.dataset.id);
+        sync();
+      });
+    });
+
+    root.querySelector('[data-clear]')?.addEventListener('click', () => {
+      if (locked) return;
+      builtIds = [];
+      feedback.innerHTML = '';
+      sync();
+    });
+
+    root.querySelector('[data-check]')?.addEventListener('click', () => {
+      if (locked) return;
+      playSelectSound();
+      const user = builtIds
+        .map((id) => parts.find((p) => p.id === id)?.text || '')
+        .join(' / ');
+      const answer = (item.answer || parts.map((p) => p.text).join(' / ')).trim();
+      const ok = normalizeAnswer(user) === normalizeAnswer(answer);
+      locked = true;
+      if (ok) score += 1;
+      feedback.innerHTML = ok
+        ? `${feedbackHtml(true, 'Correct order!')}<button type="button" class="btn btn--primary" data-next>Continue</button>`
+        : `${feedbackHtml(false, `Right order: ${answer}`)}<button type="button" class="btn btn--primary" data-next>Continue</button>`;
+      reactToAnswer(root, ok);
+      sync();
+      feedback.querySelector('[data-next]')?.addEventListener('click', () => {
+        index += 1;
+        render();
+      });
+    });
+
+    sync();
   }
 
   render();
@@ -717,6 +1085,7 @@ function mountWrite(root, exercise) {
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
+      playSelectSound();
       const ok = isCorrectWrite(input.value, item);
       if (ok) score += 1;
       input.disabled = true;
@@ -737,6 +1106,7 @@ function mountWrite(root, exercise) {
           <button type="button" class="btn btn--primary" data-next>Continue</button>
         `;
       }
+      reactToAnswer(root, ok);
 
       feedback.querySelector('[data-next]')?.addEventListener('click', () => {
         index += 1;
@@ -751,16 +1121,21 @@ function mountWrite(root, exercise) {
 const mounts = {
   flip: mountFlip,
   picture: mountPicture,
+  choice: mountChoice,
+  truefalse: mountTrueFalse,
   sentence: mountSentence,
+  order: mountOrder,
   match: mountMatch,
   write: mountWrite,
+  blank: mountBlank,
 };
 
 /** Mount an interactive exercise into a container element. */
 export function mountExercise(container, exercise) {
-  const mount = mounts[exercise.type];
+  const base = resolveBaseType(exercise);
+  const mount = base ? mounts[base] : null;
   if (!mount) {
-    container.innerHTML = `<p class="ex-hint">Unsupported exercise type: ${escapeHtml(exercise.type)}</p>`;
+    container.innerHTML = `<p class="ex-hint">Unsupported exercise type: ${escapeHtml(exercise?.type || '?')}</p>`;
     return;
   }
   mount(container, exercise);

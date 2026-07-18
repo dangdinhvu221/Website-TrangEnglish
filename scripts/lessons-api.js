@@ -42,6 +42,11 @@ function attachLessonsApi(middlewares) {
           sendJson(res, 400, { ok: false, error: 'Body must include levels[] and lessons[]' });
           return;
         }
+        if (parsed.customTypes != null && !Array.isArray(parsed.customTypes)) {
+          sendJson(res, 400, { ok: false, error: 'customTypes must be an array when provided' });
+          return;
+        }
+        if (!Array.isArray(parsed.customTypes)) parsed.customTypes = [];
         const text = `${JSON.stringify(parsed, null, 2)}\n`;
         fs.writeFileSync(LESSONS_FILE, text, 'utf8');
         sendJson(res, 200, { ok: true, path: 'data/lessons.json' });

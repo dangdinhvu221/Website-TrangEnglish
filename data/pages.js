@@ -7,75 +7,90 @@ export const pages = {
   home: {
     // Hero (first viewport): brand comes from site.name
     hero: {
-      headline: 'Fun English practice',
+      headline: 'English practice that feels clear and doable',
       description:
-        'Level 1 & Level 2 — flashcards, picture chase, match, sentence building, and writing. Students love to tap; teachers can share a link.',
+        'Structured Level 1 and Level 2 activities — from vocabulary and matching to sentence building and writing — so learners can practise with confidence, anywhere in the browser.',
     },
 
     // One purpose: why this site exists
     intro: {
-      title: 'Learn through play',
-      text: 'Flashcards, picture chase, match, sentence building, and writing — pick an activity and practise. Teachers only need to open a link.',
+      title: 'Built for steady progress',
+      text: 'Each lesson combines short, focused activities that reinforce vocabulary, meaning, and everyday English. Learners get instant feedback; teachers get a simple link to share before or after class.',
     },
 
     // Featured lessons section (ids must match lessons.js)
     featured: {
-      title: 'Try these',
-      text: 'A few topics with interactive exercises ready to go.',
+      title: 'Featured topics',
+      text: 'A selection of ready-to-use lessons across levels — open any topic and start practising straight away.',
       lessonIds: ['colours', 'numbers-1-20', 'school-life', 'daily-routine'],
     },
 
     // Bottom CTA band
     ctaBand: {
-      title: 'Ready for class?',
-      text: 'Choose Level 1 or Level 2 — assign varied exercises in minutes.',
-      buttonLabel: 'Browse lessons',
+      title: 'Ready to begin?',
+      text: 'Browse by level, choose a topic, and guide learners through interactive practice in minutes.',
+      buttonLabel: 'View all lessons',
       buttonHref: '/lessons.html',
     },
   },
 
   lessons: {
     title: 'Lessons by level',
-    description: 'Choose Level 1 or Level 2 to see topics. Filter by exercise type anytime.',
+    description:
+      'Select Level 1 or Level 2 to explore topics. Use the filters anytime to find activities by type — flashcards, matching, writing, and more.',
   },
 
   about: {
     title: 'About Trang English',
+    lead: 'A focused English practice platform for young and developing learners — clear, interactive, and ready for classroom or home use.',
     paragraphs: [
-      'Trang English helps teachers assign Level 1 & Level 2 English practice in a clear, engaging way.',
-      'Students practise in the browser: flashcards, picture chase, matching, sentence building, and writing — no app install needed.',
-      'All content lives in data files, so you can edit quickly before class.',
+      'Trang English supports Level 1 and Level 2 learners with short, purposeful activities: flashcards, picture recognition, multiple choice, true or false, sentence building, ordering, matching, writing, and fill-in-the-blank.',
+      'Everything runs in the browser — no app install required. Teachers can assign a lesson link, and learners practise with immediate feedback that keeps motivation high.',
+      'Content is organised by level and topic so progress stays visible: build vocabulary, strengthen sentence sense, and grow confidence using everyday English.',
     ],
+    teacher: {
+      eyebrow: 'The teacher',
+      name: 'Teacher Trang',
+      role: 'English educator · Founder of Trang English',
+      paragraphs: [
+        'Teacher Trang designs learning experiences that are simple to follow and meaningful to practise. With a clear classroom focus, she created Trang English so learners can revisit lessons independently while teachers keep full control of the content.',
+        'Based in Hanoi, she works with Level 1 and Level 2 learners who need structure, encouragement, and activities that feel engaging — not overwhelming. Her approach emphasises clarity, repetition with purpose, and confidence in speaking and writing English.',
+      ],
+    },
     values: {
-      title: 'Why it works',
+      title: 'What we stand for',
       items: [
         {
-          title: 'Many activity types',
-          text: 'Not just reading — short games that make students want to keep going.',
+          title: 'Clarity first',
+          text: 'Short instructions, readable layouts, and activities that learners can understand without friction.',
         },
         {
-          title: 'Easy to spot and use',
-          text: 'Clear colours, big buttons, and instant right/wrong feedback.',
+          title: 'Practice that sticks',
+          text: 'Varied exercise types keep attention high while reinforcing the same language from different angles.',
         },
         {
-          title: 'Easy to update',
-          text: 'Change questions in data/lessons.json — no layout edits needed.',
+          title: 'Ready for teachers',
+          text: 'Update lessons quickly, share a link, and keep class prep light — without rebuilding the website.',
         },
       ],
+    },
+    closing: {
+      title: 'Clear English. Confident learners.',
+      text: 'Explore the lesson library and practise one focused topic at a time.',
     },
   },
 
   contact: {
-    title: 'Get in touch',
+    title: 'Contact',
     description:
-      'Questions about lessons, partnerships, or feedback? Send a note — we read every message.',
+      'For lesson enquiries, class arrangements, partnerships, or feedback — please get in touch. Every message is read carefully.',
     // Form is UI-only: submit builds a mailto: link
     form: {
-      nameLabel: 'Your name',
-      emailLabel: 'Email',
-      messageLabel: 'Message',
+      nameLabel: 'Full name',
+      emailLabel: 'Email address',
+      messageLabel: 'Your message',
       submitLabel: 'Open email app',
-      note: 'This form opens your email app with the message filled in. Nothing is sent to a server.',
+      note: 'This form opens your email app with your message prepared. Nothing is stored on a server.',
     },
   },
 };

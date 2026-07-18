@@ -8,20 +8,20 @@ export const site = {
   name: 'Trang English',
 
   // Short phrase under the brand (hero & about)
-  tagline: 'Speak clearly. Think in English.',
+  tagline: 'Clear English. Confident learners.',
 
   // Browser tab title suffix: "Home — Trang English"
   titleSuffix: 'Trang English',
 
   // Primary action (buttons across the site)
   primaryCta: {
-    label: 'Start learning',
+    label: 'Explore lessons',
     href: '/lessons.html',
   },
 
   // Secondary action on the home hero
   secondaryCta: {
-    label: 'About us',
+    label: 'Meet the teacher',
     href: '/about.html',
   },
 
@@ -36,7 +36,8 @@ export const site = {
 
   // Footer copy
   footer: {
-    blurb: 'English practice for Level 1 & Level 2 — fun, clear, and ready in the browser.',
+    blurb:
+      'An online English practice space for Level 1 and Level 2 learners — interactive, browser-ready, and designed for real classroom use.',
     copyright: '© 2026 Trang English. All rights reserved.',
   },
 
@@ -44,7 +45,7 @@ export const site = {
   contact: {
     email: 'trangEnglish@gmail.com',
     // Opens the user's email app (no backend)
-    mailtoSubject: 'Question about Trang English',
+    mailtoSubject: 'Enquiry — Trang English',
     phone: '+84 363 784 511',
     address: 'Hoa Chinh, Hanoi',
     hours: 'Mon–Fri, 9:00–17:00 (GMT+7)',

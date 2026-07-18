@@ -4,82 +4,16 @@
       "id": "cap-1",
       "name": "Level 1",
       "title": "English — Level 1",
-      "description": "Fun practice: flashcards, picture chase, and matching — great for younger learners."
+      "description": "Foundational practice for younger learners — vocabulary, recognition, matching, and simple production through clear interactive activities."
     },
     {
       "id": "cap-2",
       "name": "Level 2",
       "title": "English — Level 2",
-      "description": "Sentence building, writing, and matching — short conversations for older learners."
+      "description": "Extended practice for developing learners — sentence building, writing, and everyday communication with more variety and challenge."
     }
   ],
   "lessons": [
-    {
-      "id": "quick-lesson",
-      "levelId": "cap-1",
-      "title": "Quick lesson",
-      "summary": "Edit this summary.",
-      "body": "Short intro for students.",
-      "tip": "Teacher tip here.",
-      "exercises": [
-        {
-          "id": "quick-lesson-flip-1",
-          "type": "flip",
-          "title": "Flashcards",
-          "prompt": "Flip the cards.",
-          "cards": [
-            {
-              "front": "A",
-              "back": "apple"
-            },
-            {
-              "front": "B",
-              "back": "ball"
-            }
-          ]
-        },
-        {
-          "id": "quick-lesson-picture-2",
-          "type": "picture",
-          "title": "Picture chase",
-          "prompt": "Choose the correct word.",
-          "items": [
-            {
-              "image": "🍎",
-              "options": [
-                "apple",
-                "ball",
-                "cat"
-              ],
-              "answer": "apple"
-            },
-            {
-              "image": "/images/apple.svg",
-              "imageAlt": "Apple",
-              "options": [
-                "apple",
-                "dog",
-                "sun"
-              ],
-              "answer": "apple"
-            }
-          ]
-        },
-        {
-          "id": "quick-lesson-write-3",
-          "type": "write",
-          "title": "Write",
-          "prompt": "Type the answer.",
-          "items": [
-            {
-              "prompt": "Write the word for 1",
-              "hint": "o…",
-              "answer": "one"
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "numbers-1-20",
       "levelId": "cap-1",
@@ -862,5 +796,6 @@
         }
       ]
     }
-  ]
+  ],
+  "customTypes": []
 }

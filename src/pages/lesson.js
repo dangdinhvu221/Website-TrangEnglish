@@ -2,6 +2,12 @@ import { site } from '@data/site.js';
 import { getLessonById, getLevelById } from '@data/lessons.js';
 import { getExerciseType } from '@data/exercise-types.js';
 import { mountChrome } from '@/components/chrome.js';
+import {
+  isMusicEnabled,
+  startExerciseMusic,
+  stopExerciseMusic,
+  toggleExerciseMusic,
+} from '@/exercises/bg-music.js';
 import { mountExercise } from '@/exercises/index.js';
 import { escapeHtml, initReveal, setTitle, withBase } from '@/utils.js';
 
@@ -49,9 +55,13 @@ if (!lesson) {
             ${exercises
               .map((ex, i) => {
                 const type = getExerciseType(ex.type);
+                const customStyle = type.custom
+                  ? ` style="--type-accent:${escapeHtml(type.color || '#5a6a7a')}"`
+                  : '';
+                const rowMod = type.custom ? 'activity-row--custom' : `activity-row--${escapeHtml(ex.type)}`;
                 return `
                   <li>
-                    <button type="button" class="activity-row activity-row--${escapeHtml(ex.type)}" data-ex="${i}">
+                    <button type="button" class="activity-row ${rowMod}" data-ex="${i}"${customStyle}>
                       <span class="activity-row__type">${escapeHtml(type.label)}</span>
                       <span class="activity-row__title">${escapeHtml(ex.title)}</span>
                       <span class="activity-row__go" aria-hidden="true">→</span>
@@ -71,7 +81,13 @@ if (!lesson) {
         <section class="ex-panel" id="exercise-stage" data-stage hidden>
           <div class="ex-panel__bar">
             <button type="button" class="ex-panel__back" data-close-ex>← Back</button>
-            <span class="ex-panel__type" data-ex-type></span>
+            <div class="ex-panel__bar-right">
+              <button type="button" class="ex-music-btn" data-music-toggle aria-pressed="true" title="Music on/off">
+                <span class="ex-music-btn__icon" aria-hidden="true">♪</span>
+                <span class="ex-music-btn__label" data-music-label>Music</span>
+              </button>
+              <span class="ex-panel__type" data-ex-type></span>
+            </div>
           </div>
           <h2 class="ex-panel__title" data-ex-title></h2>
           <p class="ex-panel__prompt" data-ex-prompt></p>
@@ -89,7 +105,18 @@ if (!lesson) {
   const titleEl = main.querySelector('[data-ex-title]');
   const promptEl = main.querySelector('[data-ex-prompt]');
   const typeEl = main.querySelector('[data-ex-type]');
+  const musicBtn = main.querySelector('[data-music-toggle]');
+  const musicLabel = main.querySelector('[data-music-label]');
   const rows = [...main.querySelectorAll('.activity-row')];
+
+  function syncMusicButton() {
+    const on = isMusicEnabled();
+    if (!musicBtn) return;
+    musicBtn.classList.toggle('is-off', !on);
+    musicBtn.setAttribute('aria-pressed', String(on));
+    musicBtn.title = on ? 'Turn music off' : 'Turn music on';
+    if (musicLabel) musicLabel.textContent = on ? 'Music' : 'Muted';
+  }
 
   function openExercise(index) {
     const exercise = exercises[index];
@@ -98,7 +125,13 @@ if (!lesson) {
 
     rows.forEach((row, i) => row.classList.toggle('is-active', i === index));
     typeEl.textContent = type.label;
-    typeEl.className = `ex-panel__type ex-panel__type--${exercise.type}`;
+    if (type.custom) {
+      typeEl.className = 'ex-panel__type ex-panel__type--custom';
+      typeEl.style.setProperty('--type-accent', type.color || '#5a6a7a');
+    } else {
+      typeEl.className = `ex-panel__type ex-panel__type--${exercise.type}`;
+      typeEl.style.removeProperty('--type-accent');
+    }
     titleEl.textContent = exercise.title;
     promptEl.textContent = exercise.prompt ?? '';
     promptEl.hidden = !exercise.prompt;
@@ -108,10 +141,13 @@ if (!lesson) {
     intro.hidden = true;
     stage.hidden = false;
     mountExercise(root, exercise);
+    syncMusicButton();
+    startExerciseMusic();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function closeExercise() {
+    stopExerciseMusic();
     article.classList.remove('is-playing');
     picker.hidden = false;
     intro.hidden = false;
@@ -125,4 +161,12 @@ if (!lesson) {
   });
 
   main.querySelector('[data-close-ex]')?.addEventListener('click', closeExercise);
+
+  musicBtn?.addEventListener('click', () => {
+    toggleExerciseMusic();
+    syncMusicButton();
+  });
+
+  syncMusicButton();
+  window.addEventListener('pagehide', stopExerciseMusic);
 }
